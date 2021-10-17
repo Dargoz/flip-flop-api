@@ -13,14 +13,15 @@ class CreatePlayerTable extends Migration
      */
     public function up()
     {
-        Schema::create('player', function (Blueprint $table) {
+        Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps('best_date');
-            $table->string('first_score');
-            $table->string('best_score');
-            $table->string('last_score');
-            $table->timestamps();
+            $table->text('best_date')->nullable();
+            $table->text('first_score');
+            $table->text('best_score');
+            $table->text('last_score')->nullable();
+            $table->softDeletesTz();
+            $table->timestampsTz();
         });
     }
 
@@ -31,6 +32,6 @@ class CreatePlayerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player');
+        Schema::dropIfExists('players');
     }
 }
