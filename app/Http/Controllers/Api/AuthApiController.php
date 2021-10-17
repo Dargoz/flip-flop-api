@@ -31,9 +31,10 @@ class AuthApiController extends Controller
             $credentials = request(['email', 'password']);
             $credentials = Arr::add($credentials, 'status', 'active');
             if (!Auth::attempt($credentials)) {
+                
                 $respon = [
                     'status' => 'error',
-                    'msg' => 'Unathorized',
+                    'msg' => 'The provided credentials do not match our records.',
                     'errors' => null,
                     'content' => null,
                 ];
